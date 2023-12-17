@@ -8,9 +8,13 @@ import { myWorker } from "./worker.js";
 dotenv.config();
 
 async function addJob(email) {
-  await myQueue.add("email", {
-    to: email,
-  });
+  await myQueue.add(
+    "email",
+    {
+      to: email,
+    },
+    { delay: 10000 } //10 sec
+  );
 }
 
 const app = express();
