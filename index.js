@@ -13,7 +13,7 @@ async function addJob(email) {
     {
       to: email,
     },
-    { delay: 10000 } //10 sec
+    { delay: 1000 * 1 * 1 * 10 } //1000 * hours * minutes * sec
   );
 }
 
