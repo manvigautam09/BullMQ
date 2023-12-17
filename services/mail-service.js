@@ -2,7 +2,12 @@ import { triggerEmail } from "./ses-service.js";
 import mjml2html from "mjml";
 import * as ejs from "ejs";
 
-export const sendVerificationEmail = async (to) => {
+export const sendVerificationEmail = async (
+  to,
+  customerName,
+  productName,
+  productImage
+) => {
   const mjmlObject = mjml2html(`
   <mjml>
   <mj-head>
