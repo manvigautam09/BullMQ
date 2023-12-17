@@ -156,7 +156,11 @@ export const sendVerificationEmail = async (
 </mjml>
     `);
 
-  const htmlString = ejs.render(mjmlObject.html);
+  const htmlString = ejs.render(mjmlObject.html, {
+    customerName,
+    productName,
+    productImage,
+  });
 
   await triggerEmail(
     "verify@dashpad.in",
