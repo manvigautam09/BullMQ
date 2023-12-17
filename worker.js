@@ -7,7 +7,12 @@ export const myWorker = new Worker(
   async (job) => {
     try {
       console.log("### Consuming job", job.id, "with data", job.data);
-      sendVerificationEmail([job.data.to]);
+      sendVerificationEmail(
+        [job.data.to],
+        job.data.customerName,
+        job.data.productName,
+        job.data.productImage
+      );
     } catch (err) {
       // Reject Promise on error
       throw err;

@@ -7,11 +7,14 @@ import { myWorker } from "./worker.js";
 
 dotenv.config();
 
-async function addJob(email) {
+async function addJob(email, customerName, productName, productImage) {
   await myQueue.add(
     "email",
     {
       to: email,
+      customerName,
+      productName,
+      productImage,
     },
     { delay: 1000 * 1 * 1 * 10 } //1000 * hours * minutes * sec
   );
@@ -28,9 +31,9 @@ app.get("/", async (req, res) => {
 });
 
 app.get("/trigger-email", async (req, res) => {
-  const { email } = req.body;
+  const { email, customerName, productName, productImage } = req.body;
   console.log("### trigger-email", email);
-  addJob(email);
+  addJob(email, customerName, productName, productImage);
   res.send("trigger-email");
 });
 
